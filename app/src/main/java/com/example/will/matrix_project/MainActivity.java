@@ -18,6 +18,15 @@ import android.widget.ImageView;
  * bug:
  * 1,旋转没有实现.
  * 2,移动的时候第三根手指的运动轨迹并未屏蔽.
+ * <p>
+ * <p>
+ * 三种常用的变化api,变化的矩阵:
+ * //平移变换，在X轴上平移x多个距离，在Y轴上平移y多个距离
+ * postTranslate(float x,floaty);
+ * //旋转变换，degrees旋转度数，px，py旋转原点
+ * postRotate(float degrees,float px,float py);
+ * //缩放变换 sx,sy,xy轴的缩放,一般是等比例缩放所以是一样的down的时候重置，px，py缩放原点
+ * postScale(float sx,float sy,float px,float py);
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -171,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
                         float dismove = getDistance(event);
                         float scale = dismove / startDistance;
                         changegMx.set(startMx);
-                        changegMx.postScale(scale, scale, miPF.x, miPF.y);
+                        changegMx.postScale(scale, scale, miPF.x, miPF.y);//变化的是矩阵
                         Log.i("FFF", "onTouch: scale" + scale);
                     }
                     break;
